@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:13
+    container_name: payments_db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=Test1!
+      - POSTGRES_DB=mini_payments
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - payments_network
+    restart: always
+
+networks:
+  payments_network:
+    driver: bridge
+
+volumes:
+  db_data:
